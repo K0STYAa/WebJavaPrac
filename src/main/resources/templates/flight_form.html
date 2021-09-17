@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="${action}" th:object="${flight}" method="post">
+    <table>
+        <tr>
+            <td>Авиалиния:</td>
+            <td><select id="airlineId" th:field="*{airlineId.airlineId}">
+                <option th:each="airline : ${allairlines}"
+                        th:value="${airline.getAirlineId()}"
+                        th:text="${airline.getAirlineName()}"></option>
+            </select></td>
+            <td th:if="${#fields.hasErrors('airlineId')}" th:errors="*{airlineId}">airlineId Error</td>
+        </tr>
+        <tr>
+            <td>Аэропорт отлета:</td>
+            <td><select id="departure" th:field="*{departure.airportId}">
+                <option th:each="airport : ${allairports}"
+                        th:value="${airport.getAirportId()}"
+                        th:text="${airport.getAirportName()}"></option>
+            </select></td>
+            <td th:if="${#fields.hasErrors('departure')}" th:errors="*{departure}">departure Error</td>
+        </tr>
+        <tr>
+            <td>Аэропорт прилета:</td>
+            <td><select id="arrival" th:field="*{arrival.airportId}">
+                <option th:each="airport : ${allairports}"
+                        th:value="${airport.getAirportId()}"
+                        th:text="${airport.getAirportName()}"></option>
+            </select></td>
+            <td th:if="${#fields.hasErrors('arrival')}" th:errors="*{arrival}">arrival Error</td>
+        </tr>
+        <tr>
+            <td>Дата вылета:</td>
+            <td><input id="date1" type="date" th:field="*{DepartureTime}" th:value="das"/></td>
+            <td th:if="${#fields.hasErrors('DepartureTime')}" th:errors="*{DepartureTime}">DepartureTime Error</td>
+        </tr>
+        <tr>
+            <td>Дата прилета:</td>
+            <td><input id="date2" type="date" th:field="*{ArrivalTime}" th:value="das"/></td>
+            <td th:if="${#fields.hasErrors('ArrivalTime')}" th:errors="*{ArrivalTime}">ArrivalTime Error</td>
+        </tr>
+        <tr>
+            <td>Цена:</td>
+            <td><input id="cost" type="number" th:field="*{cost}" /></td>
+            <td th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}">cost Error</td>
+        </tr>
+        <tr>
+            <td>Количество мест:</td>
+            <td><input id="number" type="number" th:field="*{number}" /></td>
+            <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}">number Error</td>
+        </tr>
+        <tr>
+            <td>Расстояние в милях:</td>
+            <td><input id="miles" type="number" th:field="*{miles}" /></td>
+            <td th:if="${#fields.hasErrors('miles')}" th:errors="*{miles}">miles Error</td>
+        </tr>
+        <td><button th:if="${operation == 'add'}" id="add" type="submit">Добавить</button></td>
+        <td><button th:if="${operation == 'update'}" id="update" type="submit">Редактировать</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

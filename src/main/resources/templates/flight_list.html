@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Аэропорты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/" class="btn">Домашняя страница</a>
+<tr th:each="flight : ${flights}">
+    <p align="center">
+        <a th:href="@{'/flights/' + ${flight.getFlightNumber()}}">
+            <td th:text="${flight.getFlightNumber()}"></td> ; 
+            <td th:text="${flight.getAirlineId().getAirlineName()}"></td> ; 
+            <td th:text="${flight.getDeparture().getAirportName()}"></td> --> 
+            <td th:text="${flight.getArrival().getAirportName()}"></td> ; 
+            <td th:text=" ${flight.getDepartureTime()} "></td> --> 
+            <td th:text="${flight.getArrivalTime()}"></td> ; 
+            <td th:text="${flight.getnumber()}"></td>
+        </a>
+    </p>
+</tr>
+<form action="/flights/form" method="get">
+    <input id="add" type="submit" value="Добавить">
+</form>
+</body>
+</html>

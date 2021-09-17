@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="${action}" th:object="${customer}" method="post">
+    <table>
+        <tr>
+            <td>Имя клиента:</td>
+            <td><input id="name" type="text" th:field="*{customerFullName}"/></td>
+            <td th:if="${#fields.hasErrors('customerFullName')}" th:errors="*{customerFullName}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Адрес клиента:</td>
+            <td><input id="addr" type="text" th:field="*{CustomerAddress}"/></td>
+            <td th:if="${#fields.hasErrors('CustomerAddress')}" th:errors="*{CustomerAddress}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Телефон клиента:</td>
+            <td><input id="phone" type="text" th:field="*{customerPhoneNumber}"/></td>
+            <td th:if="${#fields.hasErrors('customerPhoneNumber')}" th:errors="*{customerPhoneNumber}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Email клиента:</td>
+            <td><input id="email" type="text" th:field="*{CustomerEmail}"/></td>
+            <td th:if="${#fields.hasErrors('CustomerEmail')}" th:errors="*{CustomerEmail}">Name Error</td>
+        </tr>
+        <tr>
+            <td><button th:if="${operation == 'add'}" id="add" type="submit">Добавить</button></td>
+            <td><button th:if="${operation == 'update'}" id="update" type="submit">Редактировать</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

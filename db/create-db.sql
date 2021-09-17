@@ -1,0 +1,1 @@
+CREATE DATABASE air_travel_system WITH ENCODING 'UTF-8'; 

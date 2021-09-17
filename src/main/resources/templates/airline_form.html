@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="${action}" th:object="${airline}" method="post">
+    <table>
+        <tr>
+            <td>Название авиалинии:</td>
+            <td><input id="name" type="text" th:field="*{airlineName}"/></td>
+            <td th:if="${#fields.hasErrors('airlineName')}" th:errors="*{airlineName}">Name Error</td>
+        </tr>
+        <tr>
+            <td><button th:if="${operation == 'add'}" id="add" type="submit">Добавить</button></td>
+            <td><button th:if="${operation == 'update'}" id="update" type="submit">Редактировать</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

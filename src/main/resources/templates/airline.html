@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Информация об авиалиние</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/airlines" class="btn">Список авиалиний</a>
+<p id="name" th:text="'Название аэропорта: ' + ${AirlineName}"></p>
+<form th:action="'/airlines/' + ${AirlineId} + '/update'" method="get">
+    <input id="update" type="submit" value="Редактировать">
+</form>
+<form action="/airlines/delete" method="post">
+    <input type="hidden" name="id" th:value="${AirlineId}">
+<input id="delete" type="submit" value="Удалить">
+</form>
+
+<a href="/" class="btn">Рейсы авиалинии: </a>
+<tr th:each="flight : ${arr}">
+    <p align="center">
+        <a th:href="@{'/flights/' + ${flight.getFlightNumber()}}">
+            <td th:text="${flight.getFlightNumber()}"></td> ; 
+            <td th:text="${flight.getAirlineId().getAirlineName()}"></td> ; 
+            <td th:text="${flight.getDeparture().getAirportName()}"></td> --> 
+            <td th:text="${flight.getArrival().getAirportName()}"></td> ; 
+            <td th:text="${flight.getDepartureTime()} "></td> --> 
+            <td th:text="${flight.getArrivalTime()}"></td>
+        </a>
+    </p>
+</tr>
+
+<a href="/" class="btn">Клиенты авиалиний: </a>
+<tr th:each="client : ${arr2}">
+    <p align="center">
+        <a th:href="@{'/customers/' + ${client.getCustomerId().getCustomerId()}}">
+            <td th:text="${client.getCustomerId().getCustomerFullName()}"></td> ; Скидка: 
+            <td th:text="${client.getDiscount()} "></td>% ; Миль: 
+            <td th:text="${client.getmiles()}"></td>
+        </a>
+    </p>
+</tr>
+
+</body>
+</html>

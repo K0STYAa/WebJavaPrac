@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Информация об аэропорте</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/airports" class="btn">Список аэропортов</a>
+<p id="name" th:text="'Название аэропорта: ' + ${AirportName}"></p>
+<form th:action="'/airports/' + ${AirportId} + '/update'" method="get">
+    <input id="update" type="submit" value="Редактировать">
+</form>
+<form action="/airports/delete" method="post">
+    <input type="hidden" name="id" th:value="${AirportId}">
+<input id="delete" type="submit" value="Удалить">
+</form>
+
+<a href="/" class="btn">Вылетающие рейсы: </a>
+<tr th:each="flight1 : ${arr1}">
+    <p align="center">
+        <a th:href="@{'/flights/' + ${flight1.getFlightNumber()}}">
+            <td th:text="${flight1.getFlightNumber()}"></td> ; 
+            <td th:text="${flight1.getAirlineId().getAirlineName()}"></td> ; 
+            <td th:text="${flight1.getDeparture().getAirportName()}"></td> --> 
+            <td th:text="${flight1.getArrival().getAirportName()}"></td> ; 
+            <td th:text="${flight1.getDepartureTime()} "></td> --> 
+            <td th:text="${flight1.getArrivalTime()}"></td>
+        </a>
+    </p>
+</tr>
+
+<a href="/" class="btn">Прибывающие рейсы: </a>
+<tr th:each="flight2 : ${arr2}">
+    <p align="center">
+        <a th:href="@{'/flights/' + ${flight2.getFlightNumber()}}">
+            <td th:text="${flight2.getFlightNumber()}"></td> ; 
+            <td th:text="${flight2.getAirlineId().getAirlineName()}"></td> ; 
+            <td th:text="${flight2.getDeparture().getAirportName()}"></td> --> 
+            <td th:text="${flight2.getArrival().getAirportName()}"></td> ; 
+            <td th:text="${flight2.getDepartureTime()} "></td> --> 
+            <td th:text="${flight2.getArrivalTime()}"></td>
+        </a>
+    </p>
+</tr>
+
+</body>
+</html>
